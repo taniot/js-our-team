@@ -48,7 +48,7 @@ const team = [
         foto: 'wayne-barnett-founder-ceo.jpg'
     },
     {
-
+        nome: 'Angela Caroll',
         ruolo: 'Chief Editor',
         foto: 'angela-caroll-chief-editor.jpg'
     },
@@ -84,11 +84,11 @@ Stampare su console, per ogni membro del team, le informazioni di nome, ruolo e 
 for (let i = 0; i < team.length; i++) {
     const member = team[i];
 
-    console.log(`Member ${i + 1}`);
+    //console.log(`Member ${i + 1}`);
     // console.log(member);
     for (let key in member) {
 
-        console.log(`${key}: ${member[key]}`);
+       // console.log(`${key}: ${member[key]}`);
 
         // console.log(key);
         // console.log(member[key]);
@@ -96,7 +96,7 @@ for (let i = 0; i < team.length; i++) {
     }
 
     if (i !== team.length - 1) {
-        console.log('---');
+        //console.log('---');
     }
 
 }
@@ -137,32 +137,64 @@ MILESTONE 2: createElement
 Stampare le stesse informazioni su DOM sottoforma di stringhe
 */
 
+// const ulContainer = document.getElementById('team');
+
+// for (let i = 0; i < team.length; i++) {
+//     const member = team[i];
+
+//     const liElement = document.createElement('li');
+//     liElement.classList.add('member');
+
+//     const imageContainer = document.createElement('div');
+//     imageContainer.classList.add('member-img');
+//     imageContainer.innerHTML = member.foto;
+//     liElement.append(imageContainer);
+
+
+//     if (member.nome) {
+//         const nameContainer = document.createElement('h3');
+//         nameContainer.classList.add('member-name');
+//         nameContainer.innerHTML = member.nome;
+//         liElement.append(nameContainer);
+//     }
+
+//     const roleContainer = document.createElement('p');
+//     roleContainer.classList.add('member-role');
+//     roleContainer.innerHTML = member.ruolo;
+//     liElement.append(roleContainer);
+
+//     ulContainer.append(liElement);
+
+// }
+
+
+
+
+/*
+MILESTONE 2: clone
+Stampare le stesse informazioni su DOM sottoforma di stringhe
+*/
+
+const template = document.getElementById('team-template');
 const ulContainer = document.getElementById('team');
+//console.log(template);
 
 for (let i = 0; i < team.length; i++) {
     const member = team[i];
+    //duplicazione contenuto
+    const teamTemplate = template.content.cloneNode(true);
 
-    const liElement = document.createElement('li');
-    liElement.classList.add('member');
+    teamTemplate.querySelector('.member-img img').src = `img/${member.foto}`;
+    teamTemplate.querySelector('.member-img img').alt = member.nome;
+    teamTemplate.querySelector('.member-name').innerHTML = member.nome;
+    teamTemplate.querySelector('.member-role').innerHTML = member.ruolo;
 
-    const imageContainer = document.createElement('div');
-    imageContainer.classList.add('member-img');
-    imageContainer.innerHTML = member.foto;
-    liElement.append(imageContainer);
-
-
-    if (member.nome) {
-        const nameContainer = document.createElement('h3');
-        nameContainer.classList.add('member-name');
-        nameContainer.innerHTML = member.nome;
-        liElement.append(nameContainer);
-    }
-
-    const roleContainer = document.createElement('p');
-    roleContainer.classList.add('member-role');
-    roleContainer.innerHTML = member.ruolo;
-    liElement.append(roleContainer);
-
-    ulContainer.append(liElement);
+    ulContainer.append(teamTemplate);
 
 }
+
+/*
+BONUS 1:
+Trasformare la stringa foto in una immagine effettiva
+*/
+
