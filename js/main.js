@@ -48,7 +48,7 @@ const team = [
         foto: 'wayne-barnett-founder-ceo.jpg'
     },
     {
-        nome: 'Angela Caroll',
+
         ruolo: 'Chief Editor',
         foto: 'angela-caroll-chief-editor.jpg'
     },
@@ -81,25 +81,88 @@ MILESTONE 1:
 Stampare su console, per ogni membro del team, le informazioni di nome, ruolo e la stringa della foto
 */
 
-for(let i = 0; i < team.length; i++){
+for (let i = 0; i < team.length; i++) {
     const member = team[i];
 
-    console.log(`Member ${i+1}`);
-   // console.log(member);
-    for(let key in member){
+    console.log(`Member ${i + 1}`);
+    // console.log(member);
+    for (let key in member) {
 
         console.log(`${key}: ${member[key]}`);
 
         // console.log(key);
         // console.log(member[key]);
-      
+
     }
 
-    if(i !== team.length - 1) {
-    console.log('---');
+    if (i !== team.length - 1) {
+        console.log('---');
     }
 
+}
+
+/*
+MILESTONE 2: //template literal
+Stampare le stesse informazioni su DOM sottoforma di stringhe
+
+   <li class="member">
+            <div class="member-img">image</div>
+            <h3 class="member-name">name</h3>
+            <p class="member-role">role</p>
+    </li>
 
 
+*/
+
+// const ulContainer = document.getElementById('team');
+
+// for (let i = 0; i < team.length; i++) {
+//     const member = team[i];
+
+//     const liElement = `
+//     <li class="member">
+//         <div class="member-img">${member.foto}</div>';
+//         <h3 class="member-name">${member.nome}</h3>
+//         <p class="member-role">${member.ruolo}</p>
+//     </li>
+//     `
+
+//     ulContainer.innerHTML += liElement;
+
+
+// }
+
+/*
+MILESTONE 2: createElement
+Stampare le stesse informazioni su DOM sottoforma di stringhe
+*/
+
+const ulContainer = document.getElementById('team');
+
+for (let i = 0; i < team.length; i++) {
+    const member = team[i];
+
+    const liElement = document.createElement('li');
+    liElement.classList.add('member');
+
+    const imageContainer = document.createElement('div');
+    imageContainer.classList.add('member-img');
+    imageContainer.innerHTML = member.foto;
+    liElement.append(imageContainer);
+
+
+    if (member.nome) {
+        const nameContainer = document.createElement('h3');
+        nameContainer.classList.add('member-name');
+        nameContainer.innerHTML = member.nome;
+        liElement.append(nameContainer);
+    }
+
+    const roleContainer = document.createElement('p');
+    roleContainer.classList.add('member-role');
+    roleContainer.innerHTML = member.ruolo;
+    liElement.append(roleContainer);
+
+    ulContainer.append(liElement);
 
 }
