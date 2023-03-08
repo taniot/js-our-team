@@ -8,8 +8,6 @@ nome
 ruolo
 foto
 
-MILESTONE 1:
-Stampare su console, per ogni membro del team, le informazioni di nome, ruolo e la stringa della foto
 MILESTONE 2:
 Stampare le stesse informazioni su DOM sottoforma di stringhe
 BONUS 1:
@@ -72,8 +70,36 @@ const team = [
     {
         nome: 'Barbara Ramos',
         ruolo: 'Graphic Designer',
-        foto: 'barbara-ramos-graphic-designer.jpg'
+        foto: 'barbara-ramos-graphic-designer.jpg',
     },
 ];
 
 console.log(team);
+
+/*
+MILESTONE 1:
+Stampare su console, per ogni membro del team, le informazioni di nome, ruolo e la stringa della foto
+*/
+
+for(let i = 0; i < team.length; i++){
+    const member = team[i];
+
+    console.log(`Member ${i+1}`);
+   // console.log(member);
+    for(let key in member){
+
+        console.log(`${key}: ${member[key]}`);
+
+        // console.log(key);
+        // console.log(member[key]);
+      
+    }
+
+    if(i !== team.length - 1) {
+    console.log('---');
+    }
+
+
+
+
+}
